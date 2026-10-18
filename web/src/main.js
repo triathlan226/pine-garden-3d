@@ -8,6 +8,7 @@ import { Tour } from './tour.js';
 import { Minimap } from './minimap.js';
 import { Ambience } from './audio.js';
 
+document.body.classList.add('app');
 const $ = (id) => document.getElementById(id);
 const params = new URLSearchParams(location.search);
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches || params.has('reduced');

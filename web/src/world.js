@@ -8,6 +8,8 @@ THREE.Mesh.prototype.raycast = acceleratedRaycast;
 const BASE = import.meta.env.BASE_URL;
 const V = typeof __ASSET_V__ !== 'undefined' ? __ASSET_V__ : 'dev';
 const A = (p) => `${BASE}${p}?v=${V}`;
+// Claude Artifact hosting does not serve .glb, so that build ships embedded .gltf.json instead
+const MODEL_EXT = typeof __MODEL_EXT__ !== 'undefined' ? __MODEL_EXT__ : '.glb';
 
 const SKY_TOP = new THREE.Color('#3f74c4');
 const SKY_HORIZON = new THREE.Color('#d6e2ea');
@@ -118,9 +120,9 @@ export async function loadWorld({ renderer, scene, manager, tier }) {
   }
 
   const [sceneGltf, treesGltf, colGltf] = await Promise.all([
-    gltfLoader.loadAsync(A('models/scene.glb')),
-    gltfLoader.loadAsync(A('models/trees.glb')),
-    gltfLoader.loadAsync(A('models/collision.glb')),
+    gltfLoader.loadAsync(A('models/scene' + MODEL_EXT)),
+    gltfLoader.loadAsync(A('models/trees' + MODEL_EXT)),
+    gltfLoader.loadAsync(A('models/collision' + MODEL_EXT)),
   ]);
 
   // ---------- environment ----------

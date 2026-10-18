@@ -32,7 +32,7 @@ export default defineConfig({
   base: process.env.BASE || './',
   plugins: [contentPlugin()],
   // cache-busting token for the un-hashed assets in public/ (models, textures)
-  define: { __ASSET_V__: JSON.stringify(Date.now().toString(36)) },
+  define: { __ASSET_V__: JSON.stringify(Date.now().toString(36)), __MODEL_EXT__: JSON.stringify(process.env.MODEL_EXT || '.glb') },
   build: {
     target: 'es2020',
     assetsInlineLimit: 0,
