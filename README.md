@@ -2,7 +2,9 @@
 
 花蓮松園別館（日治時期花蓮港陸軍兵事部，1942 年啟用）的 3D 互動導覽網站。可以第一人稱漫遊琉球松林與兩層拱廊建築，或跟著約 7 分鐘的自動導覽走完 14 個熱點。解說分成「史實／流傳說法／推測重建」三類，每條史實都附資料來源。
 
-- 線上版：見本文最後的「部署」
+- 線上版（GitHub Pages）：https://triathlan226.github.io/pine-garden-3d/
+- Claude Artifact 版（私人）：https://claude.ai/artifact/9sopdzQ8xUmi6xtxVDZrp9
+- 離線展示：`dist.zip`（不在 repo 內，用 `npm run build` 後壓縮 `web/dist` 產生）
 - 文件：[SPACE_PLAN.md](SPACE_PLAN.md)（照片分析、配置、尺寸）、[DECISIONS.md](DECISIONS.md)、[SOURCES.md](SOURCES.md)、[PERFORMANCE.md](PERFORMANCE.md)
 
 ## 目錄
@@ -87,6 +89,10 @@ npx playwright test
 ## 部署
 
 推送到 `main` 後，GitHub Actions（`.github/workflows/deploy.yml`）會建置並發布到 GitHub Pages，base path 自動設成 `/<repo>/`。建置好的 `dist/` 用相對路徑，也可以直接放到任何靜態主機，或使用 `dist.zip` 離線展示（需要用本機伺服器開啟，例如 `npx serve dist`，因為瀏覽器不允許 `file://` 讀取模型）。
+
+## Artifact 版
+
+`node tools/build-artifact.mjs` 會輸出 `web/dist-artifact/`：主頁改成不含 `<html>` 外殼的片段，模型轉成內嵌的 `.gltf.json`。再用 Claude 的 Artifact 發佈功能上傳整個資料夾。
 
 ## 授權
 

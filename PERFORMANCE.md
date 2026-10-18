@@ -70,4 +70,14 @@
 
 ## 6. 線上載入比較（GitHub Pages vs Claude Artifact）
 
-見文末「部署比較」，部署完成後補上。
+| | GitHub Pages | Claude Artifact |
+|---|---|---|
+| 網址 | https://triathlan226.github.io/pine-garden-3d/ | https://claude.ai/artifact/9sopdzQ8xUmi6xtxVDZrp9 |
+| 存取 | 公開 | 私人（需登入；要分享請用頁面的 Share 選單） |
+| 模型格式 | `.glb`（Meshopt） | `.gltf.json`（同一份資料改為 base64 內嵌，因為 Artifact 不提供 `.glb`），體積多約 0.7 MB |
+| 檔案數／總量 | 45 個／8.5 MB | 45 個／9.2 MB |
+| 快取標頭 | `Cache-Control: max-age=600`（GitHub 固定，無法自訂）；JS／CSS 檔名含 hash，模型與貼圖加 `?v=` 版本參數 | 由 Artifact 服務決定 |
+| 冷啟動到可操作（本機量測，3 次） | 5.5 s（首次 TTFB 3.2 s，CDN 尚未快取）、0.9 s、1.0 s | 未量測：我的測試瀏覽器沒有登入 claude.ai，無法開啟私人 Artifact |
+| 執行時 FPS（同一台機器） | 60 fps | 應該相同（同一份程式），待實測 |
+
+**怎麼比較**：分別用兩個網址開啟，按 F12 →「網路」勾選「停用快取」後重新整理，看「完成」時間與傳輸量；進入園區後，開發者主控台輸入 `__pg.stats.fps` 可以看到即時 FPS，`__pg.loadMs` 是場景載入耗時。也可以執行 `node web/tests/live-load.mjs <網址>`（需要能開啟該網址的瀏覽器狀態）。
