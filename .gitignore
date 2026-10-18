@@ -1,0 +1,11 @@
+node_modules/
+web/dist/
+web/dist-artifact/
+web/test-results/
+web/playwright-report/
+web/public/models/*_raw.glb
+blender/bake/
+blender/*.blend1
+renders/_*
+*.zip
+blender/export/

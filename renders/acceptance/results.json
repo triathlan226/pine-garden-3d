@@ -1,0 +1,697 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\User\\Documents\\foever1\\pine-garden\\web\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "C:\\Users\\User\\Documents\\foever1\\pine-garden\\web\\playwright.config.js",
+    "rootDir": "C:/Users/User/Documents/foever1/pine-garden/web/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/User/Documents/foever1/pine-garden/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "C:/Users/User/Documents/foever1/pine-garden/web/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "/.*\\.spec\\.js/"
+        ],
+        "timeout": 240000
+      },
+      {
+        "outputDir": "C:/Users/User/Documents/foever1/pine-garden/web/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "C:/Users/User/Documents/foever1/pine-garden/web/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "/.*\\.spec\\.js/"
+        ],
+        "timeout": 240000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\User\\Documents\\foever1\\pine-garden\\web\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "desktop",
+        "testDir": "C:\\Users\\User\\Documents\\foever1\\pine-garden\\web\\tests",
+        "snapshotDir": "C:\\Users\\User\\Documents\\foever1\\pine-garden\\web\\tests",
+        "testIgnore": [],
+        "testMatch": {},
+        "timeout": 240000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173/",
+          "launchOptions": {
+            "args": [
+              "--use-angle=d3d11",
+              "--enable-gpu",
+              "--ignore-gpu-blocklist",
+              "--enable-unsafe-swiftshader"
+            ]
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "deviceScaleFactor": 1
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "desktop"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\User\\Documents\\foever1\\pine-garden\\web\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "mobile",
+        "testDir": "C:\\Users\\User\\Documents\\foever1\\pine-garden\\web\\tests",
+        "snapshotDir": "C:\\Users\\User\\Documents\\foever1\\pine-garden\\web\\tests",
+        "testIgnore": [],
+        "testMatch": {},
+        "timeout": 240000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173/",
+          "launchOptions": {
+            "args": [
+              "--use-angle=d3d11",
+              "--enable-gpu",
+              "--ignore-gpu-blocklist",
+              "--enable-unsafe-swiftshader"
+            ]
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "deviceScaleFactor": 2,
+          "isMobile": true,
+          "hasTouch": true,
+          "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0 Mobile Safari/537.36"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "mobile"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../renders/acceptance/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npx vite preview --port 4173 --strictPort",
+      "url": "http://127.0.0.1:4173/",
+      "reuseExistingServer": true,
+      "timeout": 60000
+    }
+  },
+  "suites": [
+    {
+      "title": "acceptance.spec.js",
+      "file": "acceptance.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "home, panels and minimap render without console errors",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 18429,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T07:07:03.500Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-0720e8d4ec84c6276da2",
+          "file": "acceptance.spec.js",
+          "line": 39,
+          "column": 1
+        },
+        {
+          "title": "every hotspot opens with the content from hotspots.json",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4624,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T07:07:22.057Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-52480990a7da50a4b6ea",
+          "file": "acceptance.spec.js",
+          "line": 88,
+          "column": 1
+        },
+        {
+          "title": "auto tour walks the whole route without sticking or falling",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 84218,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T07:07:26.720Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-6b90588dbb63058d7da2",
+          "file": "acceptance.spec.js",
+          "line": 116,
+          "column": 1
+        },
+        {
+          "title": "walls and the site boundary hold when walking into them",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 16822,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T07:08:50.960Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-28b663c04fbf7c27b5a5",
+          "file": "acceptance.spec.js",
+          "line": 144,
+          "column": 1
+        },
+        {
+          "title": "performance sample",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 27327,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T07:09:07.818Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-d060524e8cfc67c45929",
+          "file": "acceptance.spec.js",
+          "line": 178,
+          "column": 1
+        },
+        {
+          "title": "content pages and 2D fallback load cleanly",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3774,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T07:09:35.179Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-0198a065d4831ba4c3ec",
+          "file": "acceptance.spec.js",
+          "line": 199,
+          "column": 1
+        },
+        {
+          "title": "reduced motion skips the intro",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2119,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T07:09:38.971Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-f6e2c029c1a3a68ca5d6",
+          "file": "acceptance.spec.js",
+          "line": 212,
+          "column": 1
+        },
+        {
+          "title": "home, panels and minimap render without console errors",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 16605,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T07:09:41.735Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-9faba566e43392288dfb",
+          "file": "acceptance.spec.js",
+          "line": 39,
+          "column": 1
+        },
+        {
+          "title": "every hotspot opens with the content from hotspots.json",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4310,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T07:09:58.455Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-eaba43c3aab2b103c4d9",
+          "file": "acceptance.spec.js",
+          "line": 88,
+          "column": 1
+        },
+        {
+          "title": "auto tour walks the whole route without sticking or falling",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "route physics is identical on mobile; run once",
+                  "location": {
+                    "file": "C:\\Users\\User\\Documents\\foever1\\pine-garden\\web\\tests\\acceptance.spec.js",
+                    "line": 117,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 97,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T07:10:02.797Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "route physics is identical on mobile; run once",
+                      "location": {
+                        "file": "C:\\Users\\User\\Documents\\foever1\\pine-garden\\web\\tests\\acceptance.spec.js",
+                        "line": 117,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-2863048f634fc6da934e",
+          "file": "acceptance.spec.js",
+          "line": 116,
+          "column": 1
+        },
+        {
+          "title": "walls and the site boundary hold when walking into them",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "same physics",
+                  "location": {
+                    "file": "C:\\Users\\User\\Documents\\foever1\\pine-garden\\web\\tests\\acceptance.spec.js",
+                    "line": 145,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 47,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T07:10:02.933Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "same physics",
+                      "location": {
+                        "file": "C:\\Users\\User\\Documents\\foever1\\pine-garden\\web\\tests\\acceptance.spec.js",
+                        "line": 145,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-3b13f2c394d88c7e82a8",
+          "file": "acceptance.spec.js",
+          "line": 144,
+          "column": 1
+        },
+        {
+          "title": "performance sample",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 27191,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T07:10:02.990Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-a2ce90500e84f4b29e99",
+          "file": "acceptance.spec.js",
+          "line": 178,
+          "column": 1
+        },
+        {
+          "title": "content pages and 2D fallback load cleanly",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3867,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T07:10:30.199Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-57cd7323fbffd390b3ac",
+          "file": "acceptance.spec.js",
+          "line": 199,
+          "column": 1
+        },
+        {
+          "title": "reduced motion skips the intro",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1845,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T07:10:34.084Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "25b1ef59a3a31104e3a0-16855d74eeeb4ec3d617",
+          "file": "acceptance.spec.js",
+          "line": 212,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-18T07:07:02.207Z",
+    "duration": 214305.302,
+    "expected": 12,
+    "skipped": 2,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

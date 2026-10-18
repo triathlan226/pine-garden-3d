@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1d2a22" />
+  <meta name="description" content="花蓮松園別館（日治時期花蓮港陸軍兵事部）3D 互動導覽：在琉球松林與兩層拱廊之間自由漫遊，或跟著 7 分鐘自動導覽認識它的歷史。" />
+  <title>松園別館 3D 導覽</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body class="app">
+  <canvas id="view" aria-label="松園別館 3D 場景"></canvas>
+
+  <!-- loading -->
+  <section id="loader" aria-live="polite">
+    <div class="loader-card">
+      <p class="eyebrow">花蓮・美崙山麓</p>
+      <h1>松園別館</h1>
+      <p class="lead">1942 年啟用的花蓮港陸軍兵事部廳舍，坐落在琉球松林間，遠眺太平洋。</p>
+      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="bar-fill"></span></div>
+      <p id="loader-status" class="small">載入場景中…</p>
+      <div id="start-wrap" hidden>
+        <button id="btn-start" class="btn primary">進入園區</button>
+        <a class="btn ghost" href="./list.html">改看 2D 熱點清單</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HUD -->
+  <header id="hud-top" class="hud" hidden>
+    <a class="brand" href="./index.html">松園別館 <span>3D 導覽</span></a>
+    <nav class="hud-nav" aria-label="網站">
+      <a href="./about.html">關於</a>
+      <a href="./sources.html">資料來源</a>
+      <a href="./credits.html">製作說明</a>
+      <a href="./list.html">2D 版</a>
+    </nav>
+  </header>
+
+  <div id="hud-actions" class="hud" hidden>
+    <button id="btn-tour" class="btn primary" aria-pressed="false">▶ 自動導覽</button>
+    <button id="btn-next" class="btn" hidden>下一站 ›</button>
+    <button id="btn-audio" class="btn icon" aria-pressed="false" title="環境音" aria-label="環境音（目前靜音）">🔇</button>
+    <button id="btn-help" class="btn icon" title="操作說明" aria-label="操作說明">?</button>
+  </div>
+
+  <div id="minimap" class="hud" hidden>
+    <canvas id="minimap-canvas" width="360" height="360" aria-label="小地圖，點擊熱點可傳送"></canvas>
+    <button id="minimap-toggle" class="mini-toggle" aria-label="放大小地圖">⤢</button>
+  </div>
+
+  <div id="prompt" class="hud prompt" hidden></div>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <div id="tour-status" class="hud tour-status" hidden></div>
+
+  <!-- joystick (touch) -->
+  <div id="joystick" class="joystick" hidden aria-hidden="true"><div class="knob"></div></div>
+
+  <!-- hotspot panel: side bar on desktop, bottom sheet on phones -->
+  <aside id="panel" class="panel" role="dialog" aria-modal="false" aria-labelledby="panel-title" hidden>
+    <div class="grab" aria-hidden="true"></div>
+    <button id="panel-close" class="panel-close" aria-label="關閉解說">×</button>
+    <div class="panel-scroll">
+      <p class="panel-meta"><span id="panel-badge" class="badge"></span><span id="panel-index" class="small"></span></p>
+      <h2 id="panel-title"></h2>
+      <p id="panel-summary" class="summary"></p>
+      <div id="panel-body" class="body"></div>
+      <div class="sources-box">
+        <h3>資料來源</h3>
+        <ol id="panel-sources"></ol>
+      </div>
+    </div>
+  </aside>
+
+  <!-- intro / ending -->
+  <button id="btn-skip" class="btn skip" hidden>跳過開場 ›</button>
+  <section id="ending" class="overlay" hidden role="dialog" aria-labelledby="ending-title">
+    <div class="overlay-card">
+      <p class="eyebrow">導覽結束</p>
+      <h2 id="ending-title">懷念，也要一起保存</h2>
+      <p>從兵事部、美軍招待所到藝文空間，松園別館走過八十多年。老松與老屋能留到今天，是許多人奔走的結果。下次到花蓮，記得親自來看看它。</p>
+      <div class="row">
+        <button id="btn-again" class="btn primary">再走一次</button>
+        <button id="btn-free" class="btn">自由漫遊</button>
+        <a class="btn ghost" href="./about.html">松園簡史</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="help" class="overlay" hidden role="dialog" aria-labelledby="help-title">
+    <div class="overlay-card">
+      <h2 id="help-title">操作說明</h2>
+      <div class="cols">
+        <div>
+          <h3>電腦</h3>
+          <ul>
+            <li><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>／方向鍵：移動</li>
+            <li><kbd>Shift</kbd>：快走</li>
+            <li>滑鼠拖曳：轉視角（雙擊畫面可鎖定滑鼠，<kbd>Esc</kbd> 解除）</li>
+            <li><kbd>E</kbd> 或點擊發光標記：開啟解說</li>
+            <li><kbd>T</kbd>：自動導覽，<kbd>M</kbd>：小地圖</li>
+          </ul>
+        </div>
+        <div>
+          <h3>手機</h3>
+          <ul>
+            <li>左下搖桿：移動</li>
+            <li>右半螢幕滑動：轉視角</li>
+            <li>點一下發光標記：開啟解說</li>
+            <li>點小地圖上的編號：傳送到該熱點</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small">解說分三類：<span class="badge fact">史實</span> 附資料來源；<span class="badge legend">流傳說法</span> 尚無一手史料；<span class="badge recon">推測重建</span> 照片看不到、由本站推估。</p>
+      <div class="row"><button id="help-close" class="btn primary">知道了</button></div>
+    </div>
+  </section>
+
+  <noscript><p class="noscript">此導覽需要 JavaScript。請改看 <a href="./list.html">2D 熱點清單</a>。</p></noscript>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

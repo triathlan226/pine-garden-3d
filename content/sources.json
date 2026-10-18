@@ -1,0 +1,22 @@
+{
+  "_說明": "資料來源清單（與 SOURCES.md 同步）。level：官方 / 營運單位 / 新聞 / 二手 / 開放資料。",
+  "checked": "2026-10-18",
+  "sources": [
+    {"id": "S1", "title": "花蓮縣文化局〈文化資產：松園別館〉", "url": "https://www.hccc.gov.tw/zh-tw/CulturalHeritage/Detail/19", "level": "官方"},
+    {"id": "S2", "title": "文化部文化資產局 國家文化資產網：松園別館（歷史建築）", "url": "https://nchdb.boch.gov.tw/assets/advanceSearch/historicalBuilding/20020923000002", "level": "官方"},
+    {"id": "S3", "title": "松園別館官方網站", "url": "https://www.pinegarden.com.tw/", "level": "營運單位"},
+    {"id": "S4", "title": "松園別館官網〈園區介紹〉", "url": "https://www.pinegarden.com.tw/web.php?html=action&Fid=20170&form=", "level": "營運單位"},
+    {"id": "S5", "title": "松園別館官網〈松園傳奇〉（口述訪談）", "url": "https://www.pinegarden.com.tw/web.php?html=action&Fid=20192&Tsubject=533&form=", "level": "營運單位"},
+    {"id": "S6", "title": "松園別館官網〈營運團隊〉", "url": "https://www.pinegarden.com.tw/web.php?html=action&Fid=20192&Tsubject=534&form=", "level": "營運單位"},
+    {"id": "S7", "title": "中央社〈歷經強震、颱風休園整修 花蓮松園別館重新開放〉2025-01-11", "url": "https://www.cna.com.tw/news/aloc/202501110115.aspx", "level": "新聞"},
+    {"id": "S8", "title": "公視新聞網：松園別館營運至 8 月底（2024-08-22）", "url": "https://news.pts.org.tw/article/711154", "level": "新聞"},
+    {"id": "S9", "title": "自由時報〈撐過震災、水災空窗 花蓮松園別館重獲新生〉2026-08-24", "url": "https://def.ltn.com.tw/article/breakingnews/5549610", "level": "新聞"},
+    {"id": "S10", "title": "維基百科〈松園別館〉", "url": "https://zh.wikipedia.org/wiki/%E6%9D%BE%E5%9C%92%E5%88%A5%E9%A4%A8", "level": "二手"},
+    {"id": "S11", "title": "Wikipedia \"Pine Garden\"", "url": "https://en.wikipedia.org/wiki/Pine_Garden", "level": "二手"},
+    {"id": "S12", "title": "Spectral Codex \"Pine Garden (松園別館)\"", "url": "https://spectralcodex.com/hualien-pine-garden/", "level": "二手"},
+    {"id": "S13", "title": "OpenStreetMap 建物與步道資料（© OpenStreetMap contributors, ODbL）", "url": "https://www.openstreetmap.org/way/712411693", "level": "開放資料"},
+    {"id": "S14", "title": "交通部觀光署 花東縱谷國家風景區〈松園別館〉", "url": "https://www.erv-nsa.gov.tw/zh-tw/attractions/detail/266", "level": "官方"},
+    {"id": "S15", "title": "文化部「博物之島」〈松園別館〉", "url": "https://museums.moc.gov.tw/MusData/Detail?museumsId=23cb40ee-5675-4f53-8479-4ff24224d5e3", "level": "官方"},
+    {"id": "S16", "title": "OpenTopoData（ASTER GDEM 30 m 地形資料）", "url": "https://www.opentopodata.org/", "level": "開放資料"}
+  ]
+}

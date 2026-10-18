@@ -1,0 +1,32 @@
+{
+ "project": "desktop",
+ "views": [
+  {
+   "id": "facade",
+   "fps": 60.08055120984303,
+   "calls": 64,
+   "tris": 257622,
+   "dpr": 1
+  },
+  {
+   "id": "pines",
+   "fps": 60.05756209561579,
+   "calls": 46,
+   "tris": 244844,
+   "dpr": 1
+  },
+  {
+   "id": "balcony",
+   "fps": 60.04857114344771,
+   "calls": 62,
+   "tris": 263236,
+   "dpr": 1
+  }
+ ],
+ "tier": {
+  "name": "medium",
+  "gpu": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A721) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "loadMs": 150
+ },
+ "bytes": 7651400
+}

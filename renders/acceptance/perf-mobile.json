@@ -1,0 +1,32 @@
+{
+ "project": "mobile",
+ "views": [
+  {
+   "id": "facade",
+   "fps": 60.02560649147134,
+   "calls": 58,
+   "tris": 239154,
+   "dpr": 1.5
+  },
+  {
+   "id": "pines",
+   "fps": 60.02760272045373,
+   "calls": 40,
+   "tris": 226482,
+   "dpr": 1.5
+  },
+  {
+   "id": "balcony",
+   "fps": 60.10355793086911,
+   "calls": 60,
+   "tris": 245232,
+   "dpr": 1.5
+  }
+ ],
+ "tier": {
+  "name": "medium",
+  "gpu": "ANGLE (Intel, Intel(R) UHD Graphics (0x0000A721) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "loadMs": 137.90000000596046
+ },
+ "bytes": 7651400
+}

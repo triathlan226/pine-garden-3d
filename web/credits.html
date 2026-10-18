@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="松園別館 3D 導覽的製作方法：程序化建模、光照烘焙、Three.js 即時呈現與資料查證。" />
+  <title>製作說明｜松園別館 3D 導覽</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+</head>
+<body class="page" data-page="credits">
+  <main class="page-main">
+    <p class="eyebrow">Making of</p>
+    <h1>製作說明</h1>
+    <h2>怎麼做出來的</h2>
+    <ol>
+      <li><strong>照片分析與空間推估</strong>：以 10 張參考照片的透視與常見構件（門高 2.1 m、級高 17 cm、欄杆約 1 m）當比例尺，配合 OpenStreetMap 的建物輪廓，推估出主建築長 31.6 m、進深 11.4 m、每層 9 跨拱圈。</li>
+      <li><strong>程序化建模</strong>：用 Blender Python 腳本產生建築、地形、松樹、爬藤，所有尺寸都寫在一份配置檔裡，可以修改後重建。</li>
+      <li><strong>光照烘焙</strong>：用 Cycles 把午後陽光、天空光與松林的斑駁陰影烘焙到第二組 UV 的光照圖（lightmap）與 AO 圖。網頁端直接使用這些結果，只加少量即時光照亮樹木與爬藤。</li>
+      <li><strong>網頁呈現</strong>：Vite 與原生 Three.js。碰撞使用 three-mesh-bvh 做膠囊角色（含重力、爬坡、上樓梯）；松樹以 InstancedMesh 大量配置並分兩級 LOD；模型以 Meshopt 壓縮，貼圖轉為 WebP。</li>
+      <li><strong>環境音</strong>：松風、鳥鳴、海浪都是用 Web Audio 即時合成，沒有使用錄音檔。</li>
+    </ol>
+    <h2>三種內容標示</h2>
+    <p class="legend-row"><span data-badge="史實">有公開來源可查證</span></p>
+    <p class="legend-row"><span data-badge="流傳說法">廣為流傳，但沒有找到一手史料</span></p>
+    <p class="legend-row"><span data-badge="推測重建">照片看不到，由本站依資料推估（例如背立面、室內、三向式階梯、防空洞位置）</span></p>
+    <h2>素材與授權</h2>
+    <ul>
+      <li>材質貼圖：<a href="https://ambientcg.com/" target="_blank" rel="noopener">ambientCG</a>（CC0）— Concrete034、PaintedPlaster017、Plaster001、Grass004、Ground037、Gravel040、RoofingTiles013A、Bark012、Wood049、WoodFloor041。</li>
+      <li>松針、爬藤、灌木、草叢的貼圖：本站以程式自行繪製。</li>
+      <li>地圖資料：© OpenStreetMap contributors（ODbL），只用於建模。地形：ASTER GDEM（經 OpenTopoData）。</li>
+      <li>程式庫：three.js（MIT）、three-mesh-bvh（MIT）、Vite（MIT）、glTF-Transform（MIT）、meshoptimizer（MIT）。</li>
+    </ul>
+    <h2>限制</h2>
+    <p>本站是依公開照片與資料做的教育性重建，不是測繪成果；尺寸誤差可能有數十公分。室內格局、背立面、樓梯形式、防空洞與奉安所的位置都屬推測。如有更正資料，歡迎提供。</p>
+  </main>
+  <script type="module" src="./src/pages.js"></script>
+</body>
+</html>

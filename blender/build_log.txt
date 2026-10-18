@@ -1,0 +1,94 @@
+[   0.1s] trees: scatter
+[   0.1s] terrain
+[   2.2s] architecture
+[   2.6s] tree types
+[   2.8s] faces: arch 5324, ivy 5738, core 22680, outer 11470, far 2280, collision 3487
+[   2.8s] lightmap UVs
+00:22.672  cycles           | WARNING CUEW initialization failed: Error opening the library
+Info: Saved as "pine_garden.blend"
+Info: Baking map saved to internal image, save it externally or pack it
+[  82.2s] baked lm_arch 2048 LM 60s
+Info: Baking map saved to internal image, save it externally or pack it
+[ 376.2s] baked lm_core 2048 LM 292s
+Info: Baking map saved to internal image, save it externally or pack it
+[ 417.1s] baked lm_outer 1024 LM 40s
+Info: Baking map saved to internal image, save it externally or pack it
+[ 419.6s] baked lm_mound 256 LM 2s
+Info: Baking map saved to internal image, save it externally or pack it
+[ 422.9s] baked ao_arch 1024 AO 3s
+Info: Baking map saved to internal image, save it externally or pack it
+[ 442.5s] baked ao_core 1024 AO 19s
+08:34.063  render           | Saved: 'C:\Users\User\Documents\foever1\pine-garden\renders\01_front_lawn.jpg'
+Info: Saved as "pine_garden.blend"
+[ 513.5s] render 01_front_lawn 71s
+03:05:55.656  render           | Saved: 'C:\Users\User\Documents\foever1\pine-garden\renders\02_balcony_sea.jpg'
+[11155.1s] render 02_balcony_sea 10642s
+03:06:51.719  render           | Saved: 'C:\Users\User\Documents\foever1\pine-garden\renders\03_aerial.jpg'
+[11211.2s] render 03_aerial 56s
+03:07:47.047  render           | Saved: 'C:\Users\User\Documents\foever1\pine-garden\renders\04_west_pines.jpg'
+[11266.5s] render 04_west_pines 55s
+03:08:59.984  render           | Saved: 'C:\Users\User\Documents\foever1\pine-garden\renders\05_stair_hall.jpg'
+[11339.4s] render 05_stair_hall 73s
+03:09:24.016  render           | Saved: 'C:\Users\User\Documents\foever1\pine-garden\renders\minimap.jpg'
+[11363.5s] render minimap
+INFO Draco mesh compression is available, use library at C:\Program Files\Blender Foundation\Blender 5.1\5.1\scripts\addons_core\io_scene_gltf2\extern_draco.dll
+14:57:10 | INFO: Starting glTF 2.0 export
+14:57:10 | INFO: Extracting primitive: TerrainCore
+14:57:10 | INFO: Primitives created: 1
+14:57:10 | INFO: Extracting primitive: TerrainOuter
+14:57:10 | INFO: Primitives created: 1
+14:57:10 | INFO: Extracting primitive: Mound
+14:57:10 | INFO: Primitives created: 1
+14:57:10 | INFO: Extracting primitive: Arch
+14:57:10 | INFO: Primitives created: 16
+14:57:10 | INFO: Extracting primitive: Ground
+14:57:10 | INFO: Primitives created: 3
+14:57:10 | INFO: Extracting primitive: Props
+14:57:10 | INFO: Primitives created: 1
+14:57:10 | INFO: Extracting primitive: Ivy
+14:57:10 | INFO: Primitives created: 1
+14:57:10 | INFO: Extracting primitive: Far
+14:57:10 | INFO: Primitives created: 1
+14:57:10 | INFO: Extracting primitive: Sea
+14:57:10 | INFO: Primitives created: 1
+14:57:10 | INFO: Finished glTF 2.0 export in 0.2714040279388428 s
+
+[11364.0s] exported scene_raw.glb 5.6 MB
+14:57:10 | INFO: Starting glTF 2.0 export
+14:57:10 | INFO: Extracting primitive: Tree_A1_LOD0
+14:57:10 | INFO: Primitives created: 2
+14:57:10 | INFO: Extracting primitive: Tree_A1_LOD1
+14:57:10 | INFO: Primitives created: 2
+14:57:10 | INFO: Extracting primitive: Tree_A2_LOD0
+14:57:10 | INFO: Primitives created: 2
+14:57:10 | INFO: Extracting primitive: Tree_A2_LOD1
+14:57:10 | INFO: Primitives created: 2
+14:57:10 | INFO: Extracting primitive: Tree_B1_LOD0
+14:57:10 | INFO: Primitives created: 2
+14:57:10 | INFO: Extracting primitive: Tree_B1_LOD1
+14:57:10 | INFO: Primitives created: 2
+14:57:10 | INFO: Extracting primitive: Tree_B2_LOD0
+14:57:10 | INFO: Primitives created: 2
+14:57:10 | INFO: Extracting primitive: Tree_B2_LOD1
+14:57:10 | INFO: Primitives created: 2
+14:57:10 | INFO: Extracting primitive: Tree_C1_LOD0
+14:57:10 | INFO: Primitives created: 2
+14:57:10 | INFO: Extracting primitive: Tree_C1_LOD1
+14:57:10 | INFO: Primitives created: 2
+14:57:10 | INFO: Extracting primitive: Tree_S1_LOD0
+14:57:10 | INFO: Primitives created: 2
+14:57:10 | INFO: Extracting primitive: Tree_S1_LOD1
+14:57:10 | INFO: Primitives created: 2
+14:57:10 | INFO: Finished glTF 2.0 export in 0.03561115264892578 s
+
+[11364.0s] exported trees_raw.glb 0.5 MB
+14:57:10 | INFO: Starting glTF 2.0 export
+14:57:10 | INFO: Extracting primitive: Collision
+14:57:10 | INFO: Primitives created: 1
+14:57:10 | INFO: Finished glTF 2.0 export in 0.015068292617797852 s
+
+[11364.1s] exported collision_raw.glb 0.5 MB
+[11364.1s] done
+Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 01:37:34)
+
+Blender quit

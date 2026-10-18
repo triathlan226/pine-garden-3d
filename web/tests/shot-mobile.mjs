@@ -1,0 +1,12 @@
+import { chromium } from '@playwright/test';
+const [url, out, js = '', w = 390, h = 844] = process.argv.slice(2);
+const b = await chromium.launch({ headless: true, args: ['--use-angle=d3d11', '--enable-gpu', '--ignore-gpu-blocklist'] });
+const page = await b.newPage({ viewport: { width: +w, height: +h }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, userAgent: 'Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0 Mobile Safari/537.36' });
+const errs = []; page.on('pageerror', (e) => errs.push(e.message));
+await page.goto(url);
+if (url.includes('autostart')) await page.waitForFunction(() => window.__pg && window.__pg.ready, null, { timeout: 120000 });
+if (js) await page.evaluate(js);
+await page.waitForTimeout(3000);
+await page.screenshot({ path: out });
+console.log('ok', errs);
+await b.close();
