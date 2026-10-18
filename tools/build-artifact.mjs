@@ -14,17 +14,25 @@ const OUT = path.join(WEB, 'dist-artifact');
 fs.rmSync(OUT, { recursive: true, force: true });
 execSync(`npx vite build --outDir dist-artifact --emptyOutDir`, { cwd: WEB, stdio: 'inherit', env: { ...process.env, BASE: './', MODEL_EXT: '.gltf.json' } });
 
-// .glb -> self-contained glTF JSON (buffers as data: URIs)
-for (const g of fs.readdirSync(path.join(OUT, 'models')).filter((n) => n.endsWith('.glb'))) {
-  const p = path.join(OUT, 'models', g);
-  const b = fs.readFileSync(p);
-  const jsonLen = b.readUInt32LE(12);
-  const json = JSON.parse(b.subarray(20, 20 + jsonLen).toString('utf8'));
-  const binLen = b.readUInt32LE(20 + jsonLen);
-  const bin = b.subarray(28 + jsonLen, 28 + jsonLen + binLen);
-  json.buffers[0].uri = 'data:application/octet-stream;base64,' + bin.toString('base64');
-  fs.writeFileSync(p.replace(/\.glb$/, '.gltf.json'), JSON.stringify(json));
-  fs.rmSync(p);
+// Models: quantized glTF (KHR_mesh_quantization) WITHOUT meshopt, so no WebAssembly decoder is
+// needed (the Artifact frame's CSP may block it); buffers embedded as data: URIs in .gltf.json.
+import { createRequire } from 'node:module';
+import { pathToFileURL } from 'node:url';
+const req = createRequire(path.join(WEB, 'package.json'));
+const imp = (m) => import(pathToFileURL(req.resolve(m)).href);
+const { NodeIO } = await imp('@gltf-transform/core');
+const { ALL_EXTENSIONS } = await imp('@gltf-transform/extensions');
+const { dedup, prune, weld, quantize } = await imp('@gltf-transform/functions');
+const io = new NodeIO().registerExtensions(ALL_EXTENSIONS);
+for (const g of fs.readdirSync(path.join(OUT, 'models')).filter((n) => n.endsWith('.glb'))) fs.rmSync(path.join(OUT, 'models', g));
+for (const name of ['scene', 'trees', 'collision']) {
+  const doc = await io.read(path.join(ROOT, 'blender', 'export', `${name}_raw.glb`));
+  const steps = [dedup(), weld(), prune({ keepAttributes: true, keepLeaves: true })];
+  if (name !== 'collision') steps.push(quantize({ quantizePosition: 16, quantizeTexcoord: 14, quantizeNormal: 10, quantizeColor: 8 }));
+  await doc.transform(...steps);
+  const { json, resources } = await io.writeJSON(doc);
+  for (const b of json.buffers || []) b.uri = 'data:application/octet-stream;base64,' + Buffer.from(resources[b.uri]).toString('base64');
+  fs.writeFileSync(path.join(OUT, 'models', `${name}.gltf.json`), JSON.stringify(json));
 }
 
 const f = path.join(OUT, 'index.html');

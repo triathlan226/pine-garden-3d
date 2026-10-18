@@ -90,11 +90,22 @@ const ui = {
   body: $('panel-body'), sources: $('panel-sources'),
 };
 
+function showLoadError(e) {
+  console.error(e);
+  $('loader-status').innerHTML = `載入失敗：${String(e && e.message || e).slice(0, 160)}<br>請重新整理，或<a href="./list.html" style="color:#e2a65f">改看 2D 熱點清單</a>。`;
+}
+addEventListener('unhandledrejection', (ev) => { if (!window.__pg) showLoadError(ev.reason); });
 const t0 = performance.now();
-const [content, world] = await Promise.all([
-  loadContent(),
-  loadWorld({ renderer, scene, manager, tier }),
-]);
+let content, world;
+try {
+  [content, world] = await Promise.all([
+    loadContent(),
+    loadWorld({ renderer, scene, manager, tier }),
+  ]);
+} catch (e) {
+  showLoadError(e);
+  throw e;
+}
 world.setShadows(tier.shadows);
 const loadMs = performance.now() - t0;
 

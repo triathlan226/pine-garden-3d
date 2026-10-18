@@ -12,7 +12,8 @@ export class Minimap {
     this.hotspots = hotspots;
     this.onTeleport = onTeleport;
     this.img = new Image();
-    this.img.src = BASE + 'textures/minimap.webp?v=' + (typeof __ASSET_V__ !== 'undefined' ? __ASSET_V__ : 'dev');
+    const v = typeof __ASSET_V__ !== 'undefined' ? __ASSET_V__ : 'dev';
+    this.img.src = BASE + 'textures/minimap.webp' + (v ? '?v=' + v : '');
     this.zoom = 1.7;             // small view zooms on the garden
     // true north in plan coords: bearing 0 -> angle (0 - northBearingOfX) clockwise from +X
     const a = (-northBearingOfX * Math.PI) / 180;

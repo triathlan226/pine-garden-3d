@@ -1,13 +1,12 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { MeshBVH, acceleratedRaycast } from 'three-mesh-bvh';
 
 THREE.Mesh.prototype.raycast = acceleratedRaycast;
 const BASE = import.meta.env.BASE_URL;
 const V = typeof __ASSET_V__ !== 'undefined' ? __ASSET_V__ : 'dev';
-const A = (p) => `${BASE}${p}?v=${V}`;
+const A = (p) => (V ? `${BASE}${p}?v=${V}` : `${BASE}${p}`);
 // Claude Artifact hosting does not serve .glb, so that build ships embedded .gltf.json instead
 const MODEL_EXT = typeof __MODEL_EXT__ !== 'undefined' ? __MODEL_EXT__ : '.glb';
 
@@ -85,7 +84,11 @@ export async function loadWorld({ renderer, scene, manager, tier }) {
   const meta = await (await fetch(A('models/scene_meta.json'))).json();
   const treesJson = await (await fetch(A('models/trees.json'))).json();
   const gltfLoader = new GLTFLoader(manager);
-  gltfLoader.setMeshoptDecoder(MeshoptDecoder);
+  if (MODEL_EXT === '.glb') {
+    // only the .glb build is meshopt-compressed; the decoder instantiates WebAssembly on import
+    const { MeshoptDecoder } = await import('three/addons/libs/meshopt_decoder.module.js');
+    gltfLoader.setMeshoptDecoder(MeshoptDecoder);
+  }
   const texLoader = new THREE.TextureLoader(manager);
   const maxAniso = Math.min(renderer.capabilities.getMaxAnisotropy(), tier.aniso);
 
