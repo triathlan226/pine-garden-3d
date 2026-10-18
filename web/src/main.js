@@ -71,7 +71,7 @@ manager.onProgress = (url, done, total) => {
   const p = Math.round((done / Math.max(total, 1)) * 100);
   bar.style.width = p + '%';
   bar.parentElement.setAttribute('aria-valuenow', p);
-  $('loader-status').textContent = `載入場景中… ${p}%`;
+  if (!$('loader-status').dataset.err) $('loader-status').textContent = `載入場景中… ${p}%（${loadStep}）`;
 };
 manager.onError = (url) => console.warn('load error', url);
 
@@ -92,9 +92,14 @@ const ui = {
 
 function showLoadError(e) {
   console.error(e);
+  $('loader-status').dataset.err = '1';
   $('loader-status').innerHTML = `載入失敗：${String(e && e.message || e).slice(0, 160)}<br>請重新整理，或<a href="./list.html" style="color:#e2a65f">改看 2D 熱點清單</a>。`;
 }
 addEventListener('unhandledrejection', (ev) => { if (!window.__pg) showLoadError(ev.reason); });
+addEventListener('error', (ev) => { if (!window.__pg) showLoadError(ev.error || ev.message); });
+let loadStep = '開始';
+window.__loadStep = (t) => { loadStep = t; const el = $('loader-status'); if (el && !el.dataset.err) el.textContent = `載入場景中…（${t}）`; };
+setTimeout(() => { if (!window.__pg) showLoadError(new Error(`超過 40 秒仍停在「${loadStep}」`)); }, 40000);
 const t0 = performance.now();
 let content, world;
 try {
@@ -109,6 +114,7 @@ try {
 world.setShadows(tier.shadows);
 const loadMs = performance.now() - t0;
 
+window.__loadStep('啟動互動');
 const player = new Player(world.collider);
 const controls = new Controls(canvas, $('joystick'));
 const hotspots = new Hotspots({ scene, camera, content, ui, reducedMotion });

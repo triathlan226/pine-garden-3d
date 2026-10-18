@@ -80,7 +80,10 @@ function windPatch(mat, { instanced, strength = 1 }) {
   mat.customProgramCacheKey = () => `wind-${instanced}-${strength}`;
 }
 
+const step = (t) => window.__loadStep && window.__loadStep(t);
+
 export async function loadWorld({ renderer, scene, manager, tier }) {
+  step('讀取場景資料');
   const meta = await (await fetch(A('models/scene_meta.json'))).json();
   const treesJson = await (await fetch(A('models/trees.json'))).json();
   const gltfLoader = new GLTFLoader(manager);
@@ -122,11 +125,29 @@ export async function loadWorld({ renderer, scene, manager, tier }) {
     return t;
   }
 
-  const [sceneGltf, treesGltf, colGltf] = await Promise.all([
-    gltfLoader.loadAsync(A('models/scene' + MODEL_EXT)),
-    gltfLoader.loadAsync(A('models/trees' + MODEL_EXT)),
-    gltfLoader.loadAsync(A('models/collision' + MODEL_EXT)),
-  ]);
+  step('下載模型');
+  const loadModel = async (name) => {
+    if (MODEL_EXT === '.glb') return gltfLoader.loadAsync(A(`models/${name}.glb`));
+    // .gltf.json with a base64 buffer: decode it here and parse as an in-memory GLB, so no
+    // data: URL ever goes through fetch (blocked by some sandboxed hosts' CSP).
+    const json = await (await fetch(A(`models/${name}${MODEL_EXT}`))).json();
+    const b64 = json.buffers[0].uri.split(',')[1];
+    delete json.buffers[0].uri;
+    const bin = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+    let jsonBytes = new TextEncoder().encode(JSON.stringify(json));
+    const jpad = (4 - (jsonBytes.length % 4)) % 4, bpad = (4 - (bin.length % 4)) % 4;
+    const total = 12 + 8 + jsonBytes.length + jpad + 8 + bin.length + bpad;
+    const glb = new Uint8Array(total);
+    const dv = new DataView(glb.buffer);
+    dv.setUint32(0, 0x46546c67, true); dv.setUint32(4, 2, true); dv.setUint32(8, total, true);
+    dv.setUint32(12, jsonBytes.length + jpad, true); dv.setUint32(16, 0x4e4f534a, true);
+    glb.set(jsonBytes, 20); glb.fill(0x20, 20 + jsonBytes.length, 20 + jsonBytes.length + jpad);
+    const o = 20 + jsonBytes.length + jpad;
+    dv.setUint32(o, bin.length + bpad, true); dv.setUint32(o + 4, 0x004e4942, true);
+    glb.set(bin, o + 8);
+    return gltfLoader.parseAsync(glb.buffer, '');
+  };
+  const [sceneGltf, treesGltf, colGltf] = await Promise.all(['scene', 'trees', 'collision'].map(loadModel));
 
   // ---------- environment ----------
   const sunDir = new THREE.Vector3(...meta.sun_dir).normalize();
@@ -216,6 +237,7 @@ export async function loadWorld({ renderer, scene, manager, tier }) {
   scene.add(root);
   root.updateMatrixWorld(true);
 
+  step('建立碰撞網格');
   // ---------- collision ----------
   const colGeoms = [];
   colGltf.scene.updateMatrixWorld(true);
@@ -233,6 +255,7 @@ export async function loadWorld({ renderer, scene, manager, tier }) {
   collider.name = 'collider';
   scene.add(collider);
 
+  step('配置松樹');
   // ---------- trees (instanced, two LODs) ----------
   const types = {};
   treesGltf.scene.updateMatrixWorld(true);
@@ -305,6 +328,7 @@ export async function loadWorld({ renderer, scene, manager, tier }) {
     }
   }
 
+  step('鋪設草地');
   // ---------- grass tufts (instanced, distance-faded) ----------
   const grass = makeGrass({ terrainCore, groundMeshes, walk: meta.walk_boundary, count: tier.grass, tex: tex('textures/grass_atlas.webp'),
     lm: lightmap('lm_core'), lmInt: LM_INT, rect: meta.lm_core_rect || [-108, 72, -72, 54] });
